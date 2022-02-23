@@ -6,10 +6,11 @@ import { ITasks } from "../../types/ITask"
 import { useEffect, useState } from "react"
 
 interface Props {
-    selected: ITasks | undefined
+    selected: ITasks | undefined,
+    doneTask: () => void
 }
 
-export default function StopWatch({ selected}: Props) {
+export default function StopWatch({ selected, doneTask }: Props) {
     const [time, setTime] = useState<number>();
 
     useEffect(() => {
@@ -24,7 +25,7 @@ export default function StopWatch({ selected}: Props) {
                 setTime(timer - 1);
                 return countdown(timer - 1);
             }
-            
+            doneTask();
         }, 1000);
     }
     
